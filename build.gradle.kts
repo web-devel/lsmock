@@ -11,6 +11,8 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
+    implementation("org.eclipse.lsp4j:org.eclipse.lsp4j:0.24.0")
+    implementation("org.eclipse.lsp4j:org.eclipse.lsp4j.jsonrpc:0.24.0")
 }
 
 tasks.test {
