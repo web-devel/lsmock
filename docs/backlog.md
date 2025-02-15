@@ -1,0 +1,39 @@
+- Connection
+  - [ ] Stdio [p0]
+  - [ ] TCP Server
+  - [ ] TCP Client
+  - [ ] Embedded (as java lib)
+- [Lifecycle](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#lifeCycleMessages)
+  - [ ] Capabilities [p0]
+  - [ ] ...
+- [Language features](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#languageFeatures)
+  - [ ] Completion
+  - [ ] Hover
+  - [ ] Signature Help
+  - [ ] Go to Declaration
+  - [ ] Go to Definition
+  - [ ] Go to Type Definition
+  - [ ] Go to Implementation
+  - [ ] Find References
+  - [ ] Document Highlight
+  - [ ] Document Symbol
+  - [ ] Code Action
+  - [ ] Code Lens
+  - [ ] Document Link
+  - [ ] Document Formatting
+  - [ ] Document Range Formatting
+  - [ ] Document On Type Formatting
+  - [ ] Rename
+  - [ ] Folding Range
+  - [ ] Selection Range
+  - [ ] Call Hierarchy
+  - [ ] Semantic Tokens
+  - [ ] Linked Editing Range
+  - [ ] Moniker
+  - [ ] Inlay Hint
+- Modes
+  - [ ] Constant mode: predictable hardcoded results
+  - [ ] Customizable: configure responses
+    - [ ] Duration
+    - [ ] Number of items
+  - [ ] Extensions
