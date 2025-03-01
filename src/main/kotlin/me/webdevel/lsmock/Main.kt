@@ -19,5 +19,5 @@ fun main() {
 
     launcher.startListening()
 
-    println("LSP Server started. Listening for connections...")
+    println("Mock server started. Listening for connections...")
 }
