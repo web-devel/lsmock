@@ -37,3 +37,8 @@
     - [ ] Duration
     - [ ] Number of items
   - [ ] Extensions
+- Examples
+  - [ ] IntelliJ
+  - [ ] VS Code
+  - [ ] Zed
+  - [ ] NeoVIM
