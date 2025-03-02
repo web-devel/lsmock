@@ -24,8 +24,18 @@ kotlin {
     jvmToolchain(17)
 }
 
-tasks.register<JavaExec>("run") {
+tasks.register<JavaExec>("runServerWithDebug") {
     classpath = sourceSets["main"].runtimeClasspath
     mainClass.set("me.webdevel.lsmock.MainKt")
     standardInput = System.`in`
+    standardOutput = System.out
+
+    debug = true
+    debugOptions {
+        enabled = true
+        server = true
+        suspend = false // enable to debug initialization
+        host = "localhost"
+        port = 5006
+    }
 }
