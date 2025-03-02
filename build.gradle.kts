@@ -23,3 +23,9 @@ tasks.test {
 kotlin {
     jvmToolchain(17)
 }
+
+tasks.register<JavaExec>("run") {
+    classpath = sourceSets["main"].runtimeClasspath
+    mainClass.set("me.webdevel.lsmock.MainKt")
+    standardInput = System.`in`
+}
