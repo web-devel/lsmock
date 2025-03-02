@@ -4,3 +4,6 @@
 
 ### Requirements
 * Java 17
+
+### Examples
+* [Intellij](examples/intellij) - open the project separately, it's intentionally decoupled from the root gradle project 

@@ -1,4 +1,4 @@
-package org.jetbrains.plugins.template
+package org.example.ij_lsp_plugin
 
 import com.intellij.DynamicBundle
 import org.jetbrains.annotations.NonNls
