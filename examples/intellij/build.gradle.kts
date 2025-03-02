@@ -133,6 +133,14 @@ tasks {
     publishPlugin {
         dependsOn(patchChangelog)
     }
+
+    runIde {
+        systemProperty(
+            "mock.lsp.working.dir",
+            project.projectDir.parentFile.parentFile.absolutePath
+        )
+    }
+
 }
 
 intellijPlatformTesting {

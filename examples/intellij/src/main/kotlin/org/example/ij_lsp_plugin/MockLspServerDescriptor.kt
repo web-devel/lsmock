@@ -14,11 +14,18 @@ class MockLspServerDescriptor (project: Project) : ProjectWideLspServerDescripto
         val isWindows = System.getProperty("os.name")
             .contains("windows", ignoreCase = true)
 
-        val gradleScript = if (isWindows) "gradlew.bat" else "./gradlew"
 
-        return GeneralCommandLine(gradleScript, "runServerWithDebug").apply {
-            withParameters("-q", "--console=plain")
-            withWorkDirectory("")
+        val command = if (isWindows) {
+            listOf("cmd", "/c", "gradlew.bat")
+        } else {
+            listOf("./gradlew")
+        }
+
+        val workingDir = System.getProperty("mock.lsp.working.dir") ?: ""
+
+        return GeneralCommandLine(command).apply {
+            withParameters("runServerWithDebug", "-q", "--console=plain")
+            withWorkDirectory(workingDir)
         }
     }
 
