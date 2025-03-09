@@ -39,3 +39,10 @@ tasks.register<JavaExec>("runServerWithDebug") {
         port = 5006
     }
 }
+
+tasks.register<JavaExec>("runTcpServer") {
+    classpath = sourceSets["main"].runtimeClasspath
+    mainClass.set("me.webdevel.lsmock.MainKt")
+
+    args("--tcpServerPort", "5051")
+}

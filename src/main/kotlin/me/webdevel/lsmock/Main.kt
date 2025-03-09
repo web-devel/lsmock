@@ -1,23 +1,38 @@
 package me.webdevel.lsmock
 
+import me.webdevel.lsmock.args.ServerArgsParser
 import org.eclipse.lsp4j.launch.LSPLauncher
-import java.io.InputStream
-import java.io.OutputStream
+import java.net.ServerSocket
+import java.util.concurrent.Executors
 
-fun main() {
+fun main(args: Array<String>) {
+    val config = ServerArgsParser.parse(args)
+    if (config.tcpServerPort != null) {
+        startTcpServer(config.tcpServerPort)
+    } else {
+        startStdioServer()
+    }
+}
 
-    val inputStream: InputStream = System.`in`
-    val outputStream: OutputStream = System.out
+private fun startStdioServer() {
     val server = MockLanguageServer()
-
 
     val launcher = LSPLauncher.createServerLauncher(
         server,
-        inputStream,
-        outputStream
+        System.`in`,
+        System.out
     )
 
     launcher.startListening()
+}
 
-    println("Mock server started. Listening for connections...")
+private fun startTcpServer(port: Int) {
+    val (inputStream, outputStream ) = ServerSocket(port).accept() // blocks
+        .let { Pair(it.inputStream, it.outputStream) }
+
+    val server = MockLanguageServer()
+    val threads = Executors.newCachedThreadPool()
+    val launcher = LSPLauncher.createServerLauncher(server, inputStream, outputStream, threads) { it }
+
+    launcher.startListening()
 }
