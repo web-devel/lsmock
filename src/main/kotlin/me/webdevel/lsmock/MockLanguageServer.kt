@@ -1,5 +1,6 @@
 package me.webdevel.lsmock
 
+import org.eclipse.lsp4j.CompletionOptions
 import org.eclipse.lsp4j.InitializeParams
 import org.eclipse.lsp4j.InitializeResult
 import org.eclipse.lsp4j.ServerCapabilities
@@ -16,7 +17,9 @@ class MockLanguageServer : LanguageServer, LanguageClientAware {
     }
 
     override fun initialize(params: InitializeParams?): CompletableFuture<InitializeResult> {
-        return CompletableFuture.completedFuture(InitializeResult(ServerCapabilities()))
+        val serverCapabilities = ServerCapabilities()
+        serverCapabilities.completionProvider = CompletionOptions(true, listOf("."))
+        return CompletableFuture.completedFuture(InitializeResult(serverCapabilities))
     }
 
     override fun shutdown(): CompletableFuture<Any> {
