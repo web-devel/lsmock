@@ -6,4 +6,11 @@
 * Java 17
 
 ### Examples
-* [Intellij](examples/intellij) - open the project separately, it's intentionally decoupled from the root gradle project 
+#### [Intellij](examples/intellij) 
+To launch the IntelliJ example use the `Run Intellij IDE` run configuration in the root project, alternatively use `runIde` gradle task in the [example](examples/intellij) project. 
+
+
+### Debugging
+To debug the running language server:
+* Launch the server using `./gradlew runServerWithDebug` (by default, all examples use it launch the server)
+* Start debugging using `Attach to server` configuration
