@@ -6,14 +6,13 @@ import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.platform.lsp.api.ProjectWideLspServerDescriptor
 
 
-class MockLspServerDescriptor (project: Project) : ProjectWideLspServerDescriptor(project, "Mock"){
+class MockLspServerDescriptor (project: Project) : ProjectWideLspServerDescriptor(project, "Mock Language Server"){
 
     override fun isSupportedFile(file: VirtualFile): Boolean = true
 
     override fun createCommandLine(): GeneralCommandLine {
         val isWindows = System.getProperty("os.name")
             .contains("windows", ignoreCase = true)
-
 
         val command = if (isWindows) {
             listOf("cmd", "/c", "gradlew.bat")
