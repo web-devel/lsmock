@@ -8,6 +8,8 @@
 ### Examples
 #### [Intellij](examples/intellij) 
 To launch the IntelliJ example use the `Run Intellij IDE` run configuration in the root project, alternatively use `runIde` gradle task in the [example](examples/intellij) project. 
+#### [VS Code](examples/vscode)
+See [examples/vscode/README.md](examples/vscode/README.md)
 
 
 ### Debugging

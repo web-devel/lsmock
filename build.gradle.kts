@@ -24,20 +24,23 @@ kotlin {
     jvmToolchain(17)
 }
 
-tasks.register<JavaExec>("runServerWithDebug") {
+
+abstract class RunServerTask : JavaExec() {
+    // VS Code language-client unconditionally sends --stdio flag
+    @Option(option = "stdio", description = "Enable stdio communication for the server")
+    @Input
+    var useStdio: Boolean = false
+}
+
+tasks.register<RunServerTask>("runServerWithDebug") {
     classpath = sourceSets["main"].runtimeClasspath
     mainClass.set("me.webdevel.lsmock.MainKt")
     standardInput = System.`in`
     standardOutput = System.out
 
-    debug = true
-    debugOptions {
-        enabled = true
-        server = true
-        suspend = false // enable to debug initialization
-        host = "localhost"
-        port = 5006
-    }
+    // not using `debug` since it pollutes stdout
+    // set `suspend=y` to debug the language server initialization
+    jvmArgs("-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5006,quiet=y")
 }
 
 tasks.register<JavaExec>("runTcpServer") {

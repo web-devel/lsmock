@@ -1,42 +1,51 @@
-/* --------------------------------------------------------------------------------------------
- * Copyright (c) Microsoft Corporation. All rights reserved.
- * Licensed under the MIT License. See License.txt in the project root for license information.
- * ------------------------------------------------------------------------------------------ */
-
-import * as path from 'path';
-import { workspace, ExtensionContext } from 'vscode';
-
-import {
-	LanguageClient,
-	LanguageClientOptions,
-	ServerOptions,
-	TransportKind
-} from 'vscode-languageclient/node';
+import {ExtensionContext, workspace} from 'vscode';
+import {LanguageClient, LanguageClientOptions, ServerOptions, TransportKind} from 'vscode-languageclient/node';
+import * as path from "node:path";
 
 let client: LanguageClient;
 
 export function activate(context: ExtensionContext) {
-	// The server is implemented in node
-	const serverModule = context.asAbsolutePath(
-		path.join('server', 'out', 'server.js')
-	);
 
-	// If the extension is launched in debug mode then the debug server options are used
-	// Otherwise the run options are used
+	// Working directory two levels above this file.
+	const workingDir = path.join(__dirname, '..', '..', '..', '..');
+
+	// Log the absolute working directory path for debugging.
+	console.log(`Using working directory: ${workingDir}`);
+
+	const isWindows = process.platform === 'win32';
+
+	const gradleCommand = isWindows
+		? path.join(workingDir, 'gradlew.bat')
+		: path.join(workingDir, 'gradlew');
+
+	const gradleArgs = ['runServerWithDebug', '-q', '--console=plain'];
+
 	const serverOptions: ServerOptions = {
-		run: { module: serverModule, transport: TransportKind.ipc },
+		run: {
+			command: gradleCommand,
+			args: gradleArgs,
+			options: {
+				cwd: workingDir,
+				shell: isWindows
+			},
+			transport: TransportKind.stdio
+		},
 		debug: {
-			module: serverModule,
-			transport: TransportKind.ipc,
-		}
+			command: gradleCommand,
+			args: gradleArgs,
+			options: {
+				cwd: workingDir,
+				shell: isWindows
+			},
+			transport: TransportKind.stdio
+		},
+		args: []
 	};
 
 	// Options to control the language client
 	const clientOptions: LanguageClientOptions = {
-		// Register the server for plain text documents
 		documentSelector: [{ scheme: 'file', language: 'plaintext' }],
 		synchronize: {
-			// Notify the server about file changes to '.clientrc files contained in the workspace
 			fileEvents: workspace.createFileSystemWatcher('**/.clientrc')
 		}
 	};

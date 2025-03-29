@@ -1,3 +1,7 @@
+# Entrypoints
+* [plugin.xml](src/main/resources/META-INF/plugin.xml)
+* [MockLspServerDescriptor.kt](src/main/kotlin/org/example/ij_lsp_plugin/MockLspServerDescriptor.kt)
+
 # IntelliJ Platform Plugin Template
 
 [![official JetBrains project](https://jb.gg/badges/official.svg)][jb:github]
