@@ -3,5 +3,9 @@ name = "Mock language server integration"
 version = "0.0.1"
 schema_version = 1
 authors = ["Vlad Minaev <vlad.minaev@gmail.com>"]
-description = "Integrates "
+description = "Mock language server integration"
 repository = "https://github.com/web-devel/lsmock"
+
+[language_servers.mock-language-server]
+name = "Mock Language Server"
+languages = ["Plain Text"]
