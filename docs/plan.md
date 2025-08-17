@@ -1,5 +1,5 @@
 - Connection
-  - [ ] Stdio [p0]
+  - [x] Stdio [p0]
   - [ ] TCP Server
   - [ ] TCP Client
   - [ ] Embedded (as java lib)
@@ -38,7 +38,7 @@
     - [ ] Number of items
   - [ ] Extensions
 - Examples
-  - [ ] IntelliJ
-  - [ ] VS Code
-  - [ ] Zed
+  - [x] IntelliJ
+  - [x] VS Code
+  - [x] Zed
   - [ ] NeoVIM
